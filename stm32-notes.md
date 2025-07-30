@@ -101,3 +101,40 @@ STM32 microcontrollers support various internal and external clock sources:
 - It allows the system clock (SYSCLK) to run at higher speeds than the original oscillator.
 - Example: 8 MHz HSE → PLL ×9 → 72 MHz System Clock.
 - PLL is commonly used in STM32 projects requiring high CPU or peripheral performance.
+
+  ## STM32F4 Clock Tree
+
+The **Clock Tree** in STM32F4 defines how the microcontroller generates and distributes clock signals to the CPU and peripherals.
+
+<img width="383" height="575" alt="image" src="https://github.com/user-attachments/assets/40c918bb-f87a-4559-999d-6e8da8ff2acf" />
+
+
+---
+
+### **Key Points**
+- **Clock Sources:**  
+  - **HSI (16 MHz)** – Internal high-speed oscillator  
+  - **HSE (8/16 MHz)** – External crystal oscillator  
+  - **LSI/LSE** – Low-speed clocks (for RTC, Watchdog)  
+
+- **PLL (Phase-Locked Loop):**  
+  - Multiplies the input clock to achieve higher SYSCLK frequencies (up to 168 MHz).  
+
+- **SYSCLK (System Clock):**  
+  - Main CPU clock, generated from PLL, HSE, or HSI.  
+
+- **Clock Distribution:**  
+  1. SYSCLK → **AHB Bus** (core & memory)  
+  2. AHB → **APB1 / APB2** buses with prescalers  
+  3. APB buses → **Peripheral Clocks** (UART, TIM, ADC, SPI, etc.)  
+
+> 💡 **Flow:** Clock Source → PLL → SYSCLK → AHB/APB → Peripherals
+
+---
+
+### **Usage Tip**
+When configuring the clock in STM32CubeIDE:  
+1. Choose the **main clock source** (HSE or HSI).  
+2. Set **PLL multipliers** to reach the desired system frequency.  
+3. Adjust **AHB/APB prescalers** for peripherals.
+

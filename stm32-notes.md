@@ -81,4 +81,23 @@ It comes with an **embedded ST-LINK/V2** for programming and debugging, making i
 
 ---
 
+### 🕒 System Clock & Oscillator
 
+- **System Clock**: The system clock drives the timing and synchronization of all operations in an STM32 microcontroller, including CPU speed, peripherals, and timers.
+- **Oscillator**: A circuit that generates the base clock signal. STM32 devices can use internal RC oscillators or external crystal oscillators. Crystals offer higher precision, especially in time-critical applications.
+
+### ⏱️ STM32 Clock Sources
+
+STM32 microcontrollers support various internal and external clock sources:
+
+#### 🔸 Internal Oscillators
+- **HSI (High-Speed Internal):** 16 MHz internal RC oscillator. No external components needed, moderate accuracy.
+- **LSI (Low-Speed Internal):** ~32 kHz internal RC oscillator. Used in low-power modes and for watchdog timers.
+
+#### 🔹 External Oscillators
+- **HSE (High-Speed External):** 4–25 MHz crystal oscillator. Provides high-precision clock for system operation.
+- **LSE (Low-Speed External):** 32.768 kHz crystal oscillator. Commonly used with RTC for accurate timekeeping.
+-  **PLL(Phase-Locked Loop):** is a clock multiplier circuit used to generate higher frequencies from a lower-frequency source (e.g., HSI or HSE).
+- It allows the system clock (SYSCLK) to run at higher speeds than the original oscillator.
+- Example: 8 MHz HSE → PLL ×9 → 72 MHz System Clock.
+- PLL is commonly used in STM32 projects requiring high CPU or peripheral performance.

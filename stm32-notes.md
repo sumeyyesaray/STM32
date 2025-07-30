@@ -4,6 +4,8 @@
 STM32 is a family of **microcontrollers** produced by STMicroelectronics, based on **ARM architecture**. It is commonly used in embedded systems.  
 ARM (Advanced RISC Machine) → A low-power, high-efficiency processor architecture based on RISC (Reduced Instruction Set Computer).  
 It is widely used in microcontrollers like STM32 as well as in phones, tablets, and similar devices.
+-Includes cortes processor.
+<img width="881" height="216" alt="image" src="https://github.com/user-attachments/assets/edd3357a-edb1-4066-9f6c-4af82789f2a4" />
 
 ---
 

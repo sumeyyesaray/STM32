@@ -50,7 +50,8 @@ The STM32 series is classified based on use case as follows:
 The **STM32F4 Discovery** board is based on the **STM32F407VGT6** microcontroller (ARM Cortex‑M4, 168 MHz).  
 It comes with an **embedded ST-LINK/V2** for programming and debugging, making it ideal for rapid prototyping.  
 
-![STM32F4 Discovery](f8bcc433-2613-4719-97b4-7c9350182443.png)
+![Uploading Ekran görüntüsü 2025-07-30 235417.png…]()
+
 
 ---
 

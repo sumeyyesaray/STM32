@@ -1,4 +1,4 @@
-# 🛠 STM32
+ingi# 🛠 STM32
 
 ## What is STM32?
 STM32 is a family of **microcontrollers** produced by STMicroelectronics, based on **ARM architecture**. It is commonly used in embedded systems.  
@@ -137,4 +137,11 @@ When configuring the clock in STM32CubeIDE:
 1. Choose the **main clock source** (HSE or HSI).  
 2. Set **PLL multipliers** to reach the desired system frequency.  
 3. Adjust **AHB/APB prescalers** for peripherals.
+
+
+✅ Quick Tip:
+
+Using your own hardware → Use MCU Selector
+Using an official dev board → Use Board Selector
+Want to learn via examples → Use Example Selector
 

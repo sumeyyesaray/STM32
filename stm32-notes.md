@@ -145,3 +145,48 @@ Using your own hardware → Use MCU Selector
 Using an official dev board → Use Board Selector
 Want to learn via examples → Use Example Selector
 
+
+<img width="976" height="621" alt="image" src="https://github.com/user-attachments/assets/fea9991a-e699-4e2e-a837-0d793ff2efc8" />
+
+## STM32 Clock Configuration
+
+### Internal vs External Clock Sources
+
+| Source | Frequency  | Description                              |
+|--------|------------|------------------------------------------|
+| HSI    | 16 MHz     | Internal RC oscillator (low precision)    |
+| HSE    | 4–26 MHz   | External crystal/ceramic resonator (high precision) |
+
+- **HSE** is recommended for clock-sensitive peripherals such as UART, USB, Ethernet, and I2S.
+- Clock mode must be set to **Crystal/Ceramic Resonator** if a real resonator is soldered to the board. Use **Bypass/Disabled** only when an external oscillator module feeds the MCU directly.
+
+
+Example: HSE = 8 MHz → M = 8, N = 336, P = 2 → **SYSCLK = 168 MHz**
+
+### Bus Frequency Limits
+
+| Bus | Max Frequency | Description                  |
+|-----|---------------|------------------------------|
+| AHB | 168 MHz       | CPU core, memory, DMA        |
+| APB1| 42 MHz        | Low-speed peripherals (USART2, I2C…) |
+| APB2| 84 MHz        | High-speed peripherals (ADC, SPI1, USART1…) |
+
+Prescalers must be configured properly to not exceed these limits — otherwise peripherals may malfunction (wrong baud rates, timing errors, etc).
+
+### Effect of Changing Crystal Frequency
+
+| HSE Crystal | M | N   | P | SYSCLK Result |
+|------------|---|-----|---|---------------|
+| 8 MHz      | 8 | 336 | 2 | 168 MHz ✅     |
+| 16 MHz     |16 | 336 | 2 | 168 MHz ✅     |
+| 25 MHz     |25 | 336 | 2 | 168 MHz ✅     |
+
+- Using a **lower crystal frequency** requires a larger PLL multiplier → may introduce jitter.
+- Using a **higher crystal frequency** reduces PLL multiplier values → usually more stable.
+- Target `VCO_in ≈ 1–2 MHz` to keep PLL in the recommended operating range.
+
+### Recommendations
+
+- Prefer **HSE + PLL** when precise timing is important.
+- Always verify AHB/APB prescalers after changing PLL settings.
+- Keep bus clocks within their specification to avoid unstable peripheral behavior.
